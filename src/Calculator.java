@@ -29,7 +29,7 @@ public class Calculator {
     };
 
     String[] operatorsButtons = {"÷", "×", "-", "+", "="};
-    String[] actionsButtons = {"AC", "+/-", "%"};
+    String[] actionsButtons = {"AC", "+/-", "%", "√"};
 
 
     JFrame frame = new JFrame("Calculator");
@@ -140,6 +140,15 @@ public class Calculator {
                             double num = Double.parseDouble(labelArea.getText());
                             num /= 100;
                             labelArea.setText(checkNum(num));
+                        }
+                        else if (buttonValue == "√") {
+                            double num = Double.parseDouble(labelArea.getText());
+                            if (num >= 0) {
+                                num = Math.sqrt(num);
+                                labelArea.setText(checkNum(num));
+                            } else {
+                                labelArea.setText("Error");
+                            }
                         }
                     }
                     else {
