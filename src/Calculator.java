@@ -93,26 +93,25 @@ public class Calculator {
 
                     if (Arrays.asList(operatorsButtons).contains(buttonValue)) {
                         if (buttonValue.equals("=")) {
-                            if (A != null) {
-                                B = labelArea.getText();
+                            if (A != null && operation != null) {
+                                B = labelArea.getText().replace(A + operation, "");
+                                if (B.isEmpty()) {
+                                    B = "0";
+                                }
                                 double aNumber = Double.parseDouble(A);
                                 double bNumber = Double.parseDouble(B);
 
                                 if (operation.equals("+")) {
                                     labelArea.setText(checkNum(aNumber + bNumber));
-                                    
                                 }
                                 else if (operation.equals("-")) {
                                     labelArea.setText(checkNum(aNumber - bNumber));
-                                    
                                 }
                                 else if (operation.equals("×")) {
                                     labelArea.setText(checkNum(aNumber * bNumber));
-                                    
                                 }
                                 else if (operation.equals("÷")) {
                                     labelArea.setText(checkNum(aNumber / bNumber));
-                                    
                                 }
                                 clearDisplay();
                             }
@@ -120,10 +119,14 @@ public class Calculator {
                         else if ("+-×÷".contains(buttonValue)) {
                             if (operation == null) {
                                 A = labelArea.getText();
-                                labelArea.setText("0");
-                                B = "0";
+                                operation = buttonValue;
+                                B = "";
+                                labelArea.setText(A + operation);
+                            } else {
+                                // Смена оператора до ввода B
+                                operation = buttonValue;
+                                labelArea.setText(A + operation + (B != null ? B : ""));
                             }
-                            operation = buttonValue;
                         }
                     }
                     else if (Arrays.asList(actionsButtons).contains(buttonValue)) {
@@ -153,16 +156,36 @@ public class Calculator {
                     }
                     else {
                         if (buttonValue.equals(".")) {
-                           if (!labelArea.getText().contains(buttonValue)) {
-                                labelArea.setText(labelArea.getText() + buttonValue);
-                           } 
+                            if (operation == null) {
+                                if (!labelArea.getText().contains(buttonValue)) {
+                                    labelArea.setText(labelArea.getText() + buttonValue);
+                                }
+                            } else {
+                                String currentB = labelArea.getText().replace(A + operation, "");
+                                if (!currentB.contains(buttonValue)) {
+                                    if (currentB.isEmpty()) {
+                                        currentB = "0";
+                                    }
+                                    labelArea.setText(A + operation + currentB + buttonValue);
+                                }
+                            }
                         }
                         else if ("0123456789".contains(buttonValue)) {
-                            if (labelArea.getText().equals("0")) {
-                                labelArea.setText(buttonValue);
-                            }
-                            else {
-                                labelArea.setText(labelArea.getText() + buttonValue);
+                            if (operation == null) {
+                                if (labelArea.getText().equals("0")) {
+                                    labelArea.setText(buttonValue);
+                                }
+                                else {
+                                    labelArea.setText(labelArea.getText() + buttonValue);
+                                }
+                            } else {
+                                String currentB = labelArea.getText().replace(A + operation, "");
+                                if (currentB.equals("0") || currentB.isEmpty()) {
+                                    currentB = buttonValue;
+                                } else {
+                                    currentB = currentB + buttonValue;
+                                }
+                                labelArea.setText(A + operation + currentB);
                             }
                         }
                     }
