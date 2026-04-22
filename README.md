@@ -1,18 +1,87 @@
-## Getting Started
+# Calc - Калькулятор
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Образовательный проект калькулятора на Java. Приложение предоставляет функциональность для выполнения базовых арифметических операций.
 
-## Folder Structure
+## Описание
 
-The workspace contains two folders by default, where:
+Проект содержит реализацию простого калькулятора с интерфейсом на Java. Приложение демонстрирует принципы объектно-ориентированного программирования и работы с пользовательским интерфейсом.
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+## Структура проекта
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+```
+Calc/
+├── src/                    # Исходный код Java
+│   ├── App.java           # Главное приложение
+│   └── Calculator.java    # Логика калькулятора
+├── bin/                   # Скомпилированные файлы классов
+├── lib/                   # Зависимости (если требуются)
+└── README.md             # Этот файл
+```
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+## Требования
 
-## Dependency Management
+- Java 8 или выше
+- Visual Studio Code (опционально)
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+## Использование
+
+### Компиляция
+
+```bash
+javac -d bin src/*.java
+```
+
+### Запуск
+
+#### Из скомпилированных классов
+```bash
+java -cp bin App
+```
+
+#### Из JAR файла
+```bash
+java -jar CalcByMr.GhostMG.jar
+```
+
+### Создание JAR файла
+
+Создайте файл `manifest.txt` с содержимым:
+```
+Main-Class: App
+```
+
+Затем выполните команду:
+```bash
+jar cfm CalcByMr.GhostMG.jar manifest.txt -C bin .
+```
+
+Или используйте готовый JAR файл: `CalcByMr.GhostMG.jar`
+
+## Компоненты
+
+- **App.java** - Главный класс приложения с пользовательским интерфейсом
+- **Calculator.java** - Класс с логикой вычислений
+
+## Лицензия
+
+© 2026 Все права защищены.
+
+**ТОЛЬКО ДЛЯ ОБРАЗОВАТЕЛЬНЫХ И НЕКОММЕРЧЕСКИХ ЦЕЛЕЙ**
+
+Данное программное обеспечение предоставляется исключительно в образовательных целях. Использование в коммерческих целях, переупаковка, распространение или любое коммерческое использование без явного письменного разрешения **ЗАПРЕЩЕНЫ**.
+
+Разрешено:
+- ✓ Использование в образовательных целях
+- ✓ Изучение исходного кода
+- ✓ Личное использование в некоммерческих целях
+- ✓ Модификация для собственного использования
+
+Запрещено:
+- ✗ Коммерческое использование
+- ✗ Продажа программного обеспечения
+- ✗ Распространение в коммерческих целях
+- ✗ Использование как основы для коммерческого продукта
+
+## Отказ от ответственности
+
+Это программное обеспечение предоставляется "как есть" без каких-либо гарантий. Автор не несет ответственности за любые убытки или ущерб, возникшие в результате использования или невозможности использования этого программного обеспечения.
